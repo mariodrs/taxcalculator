@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario Dryas - Take Home Tax Calculator</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+  <header class="page-header">
+    <h1>Take Home Tax Calculator</h1>
+    <p class="subtitle">Calculate your take home income after Tax, National Insurance, Pension contributions and Student loans.</p>
+    <button id="theme-toggle" aria-label="Toggle theme">
+      <span class="sun-icon">☀️</span>
+      <span class="moon-icon">🌙</span>
+    </button>
+  </header>
+
+  <div class="container">
+
+    <div class="pension">
+      <h2>Pension</h2>
+      <p class="section_notice">Currently only supports salary sacrifice pension contributions*</p>
+      <label>Pension Contribution %: <input type="number" inputmode="numeric" id="pension_contribution_input"></label>
+      <p>Annual Pension Contribution: <span id="annual_pension_contribution"></span></p>
+      <p>Monthly Pension Contribution: <span id="monthly_pension_contribution"></span></p>
+    </div>
+
+
+    <div class="income_tax">
+    <h2>Income Tax</h2>
+      <label>Gross Salary: <input type="number" inputmode="numeric" id="gross_salary_input"></label>
+      <p>Gross Income Minus Pension: <span id="gross_income_minus_pension"></span></p>
+      <p>100k Tax band Personal Allowance rule: <span id="personal_allowance_rule"></span></p>
+      <p>100k Personal Allowance Deduction: <span id="personal_allowance_deduction"></span></p>
+      <p>Applicable Tax Rate: </th><th><span id="applicable_tax_rate"></span></p>
+      <p>Personal Allowance: <span id="personal_allowance"></span></p>
+
+      <table>
+        <tr>
+          <th>Tax Rate Tier</th>
+          <th>Taxable Income</th>
+          <th>Tax Rate</th>
+          <th>Taxable Pay</th>
+        </tr>
+        <tr>
+          <td>Basic rate</td>
+          <td><span id="basic_rate_taxable_income"></span></td>
+          <td>20%</td>
+          <td><span id="basic_rate_taxable_pay"></td>
+        </tr>
+        <tr>
+          <td>Higher rate</td>
+          <td><span id="higher_rate_taxable_income"></span></td>
+          <td>40%</td>
+          <td><span id="higher_rate_taxable_pay"></td>
+        </tr>
+        <tr>
+          <td>Additional rate</td>
+          <td><span id="additional_rate_taxable_income"></span></td>
+          <td>45%</td>
+          <td><span id="additional_rate_taxable_pay"></td>
+        </tr>
+      </table>
+
+      <p>Taxable Income: <span id="taxable_income"></span></p>
+      <p>Total Tax Payable: <span id="total_tax_payable"></span></p>
+      <p>Post Tax Income: <span id="post_tax_income"></span></p>
+    </div>
+
+
+    <div class="student_finance">
+      <h2>Student Finance</h2>
+      <p class="section_notice">Only covers 1 concurrent plan*</p>
+
+      <label>
+        Select payment plan:
+        <select id="sf_dropdown" onchange="updateAllCalculations()">
+          <option value="">Select Plan</option>
+          <option value="N/A">I'm student loan free!</option>
+          <option value="Plan 1">Plan 1</option>
+          <option value="Plan 2">Plan 2</option>
+          <option value="Plan 4">Plan 4</option>
+          <option value="Postgraduate">Postgraduate</option>
+        </select>
+      </label>
+      <table>
+        <tr>
+          <th>SF Thresholds</th>
+          <th>Plan 1</th>
+          <th>Plan 2</th>
+          <th>Plan 4</th>
+          <th>Postgraduate</th>
+        </tr>
+        <tr>
+          <td>Annually</td>
+          <td><span id="plan_1_threshold"></span></td>
+          <td><span id="plan_2_threshold"></span></td>
+          <td><span id="plan_4_threshold"></span></td>
+          <td><span id="plan_postgrad_threshold"></span></td>
+        </tr>
+        <tr>
+          <td>Monthly</td>
+          <td><span id="plan_1_threshold_month"></span></td>
+          <td><span id="plan_2_threshold_month"></span></td>
+          <td><span id="plan_4_threshold_month"></span></td>
+          <td><span id="plan_postgrad_threshold_month"></span></td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th>Plans 1, 2 & 4</th>
+          <th rowspan="2">Income less threshold</th>
+          <th rowspan="2">Monthly SF Payment</th>
+          <th rowspan="2">Annual SF Payment</th>
+        </tr>
+        <tr>
+          <td>9%<span id="plan_123_tax_rate"></span></td>
+        </tr>
+        <tr>
+          <th>Postgraduate</th>
+          <td rowspan="2" id="income_less_threshold"><span id=""></span></td>
+          <td rowspan="2" id="monthly_sf_payment"><span id=""></span></td>
+          <td rowspan="2" id="annual_sf_payment"><span id=""></span></td>
+        </tr>
+        <tr>
+          <td>6%<span id="postgrad_tax_rate"></span></td>
+        </tr>
+      </table>
+    </div>
+
+
+    <div class="national_insurance">
+      <h2>National Insurance (NI)</h2>
+      <p class="section_notice">Does not include Class 2 National Insurance for self-employment*</p>
+      <p>NI Taxable Income: <span id="ni_taxable_income"></span></p>
+
+      <table>
+        <tr>
+          <th>NI Rate Tier</th>
+          <th>Taxable Income</th>
+          <th>NI Rate</th>
+          <th>NI Tax</th>
+        </tr>
+        <tr>
+          <td>Basic rate</td>
+          <td><span id="ni_basic_rate_taxable_income"></span></td>
+          <td>8%</td>
+          <td><span id="ni_basic_rate_taxable_pay"></td>
+        </tr>
+        <tr>
+          <td>Higher rate</td>
+          <td><span id="ni_higher_rate_taxable_income"></span></td>
+          <td>2%</td>
+          <td><span id="ni_higher_rate_taxable_pay"></td>
+        </tr>
+      </table>
+
+      <p>Annual National Insurance: <span id="total_ni"></span></p>
+      <p>Monthly National Insurance: <span id="monthly_ni"></span></p>
+    </div>
+
+
+    <div class="net_figures">
+      <h2>Net & Gross figures</h2>
+      <p>Gross Annual Salary: <span id="gross_annual_salary"></span></p>
+      <p>Gross Monthly Salary: <span id="gross_monthly_salary"></span></p>
+      <p>Gross Weekly Salary: <span id="gross_weekly_salary"></span></p>
+      <p>Gross Daily Salary: <span id="gross_daily_salary"></span></p>
+      <p>Gross Hourly Salary: <span id="gross_hourly_salary"></span></p>
+        <br>
+      <p>Net Annual Take Home: <span id="net_take_home_figure"></span></p>
+      <p>Net Monthly Take Home: <span id="net_monthly_take_home_figure"></span></p>
+        <br>
+      <p>Annual Pension Contribution: <span id="annual_pension_figure"></span></p>
+      <p>Monthly Pension Contribution: <span id="monthly_pension_figure"></span></p>
+      <br>
+      <p>Annual Student loan repayment: <span id="annual_sf_figure"></span></p>
+      <p>Monthly Student loan repayment: <span id="monthly_sf_figure"></span></p>
+        <br>
+      <p>Annual National Insurance: <span id="annual_ni_figure"></span></p>
+      <p>Monthly National Insurance: <span id="monthly_ni_figure"></span></p>
+    </div>
+
+  </div>
+
+
+  <script type="text/javascript" src="script.js"></script>
+  </body>
+</html>
