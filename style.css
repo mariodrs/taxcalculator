@@ -185,13 +185,13 @@ select:hover {
   transition: all 0.3s ease;
 }
 
-.income_tax:hover, .pension:hover, .national_insurance:hover,
+/* .income_tax:hover, .pension:hover, .national_insurance:hover,
 .student_finance:hover, .net_figures:hover {
   background: var(--card-bg-hover);
   border-color: var(--card-border-hover);
   transform: translateY(-5px);
   box-shadow: 0 20px 40px var(--card-shadow);
-}
+} */
 
 /* Headings */
 h2 {
