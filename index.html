@@ -21,7 +21,7 @@
 
     <div class="pension">
       <h2>Pension</h2>
-      <p class="section_notice">Currently only supports salary sacrifice pension contributions*</p>
+      <p class="section_notice">Currently only supports gross salary sacrifice contributions*</p>
       <label>Pension Contribution %: <input type="number" inputmode="numeric" id="pension_contribution_input"></label>
       <p>Annual Pension Contribution: <span id="annual_pension_contribution"></span></p>
       <p>Monthly Pension Contribution: <span id="monthly_pension_contribution"></span></p>
@@ -72,25 +72,40 @@
 
     <div class="student_finance">
       <h2>Student Finance</h2>
-      <p class="section_notice">Currently only supports 1 concurrent plan*</p>
+      <p class="section_notice">Select all plans that apply to you*</p>
 
-      <label>
-        Select payment plan:
-        <select id="sf_dropdown" onchange="updateAllCalculations()">
-          <option value="">-</option>
-          <option value="N/A">I'm student loan free!</option>
-          <option value="Plan 1">Plan 1</option>
-          <option value="Plan 2">Plan 2</option>
-          <option value="Plan 4">Plan 4</option>
-          <option value="Postgraduate">Postgraduate</option>
-        </select>
-      </label>
+      <div class="plan-checkboxes">
+        <label class="checkbox-label">
+          <input type="checkbox" id="plan_1" onchange="updateAllCalculations()">
+          Plan 1
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="plan_2" onchange="updateAllCalculations()">
+          Plan 2
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="plan_4" onchange="updateAllCalculations()">
+          Plan 4
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="plan_5" onchange="updateAllCalculations()">
+          Plan 5
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="postgraduate" onchange="updateAllCalculations()">
+          Postgraduate
+        </label>
+      </div>
+
+  <!-- Threshold table stays the same -->
+  <!-- Thresholds table -->
       <table>
         <tr>
           <th>SF Thresholds</th>
           <th>Plan 1</th>
           <th>Plan 2</th>
           <th>Plan 4</th>
+          <th>Plan 5</th>
           <th>Postgraduate</th>
         </tr>
         <tr>
@@ -98,6 +113,7 @@
           <td><span id="plan_1_threshold"></span></td>
           <td><span id="plan_2_threshold"></span></td>
           <td><span id="plan_4_threshold"></span></td>
+          <td><span id="plan_5_threshold"></span></td>
           <td><span id="plan_postgrad_threshold"></span></td>
         </tr>
         <tr>
@@ -105,28 +121,33 @@
           <td><span id="plan_1_threshold_month"></span></td>
           <td><span id="plan_2_threshold_month"></span></td>
           <td><span id="plan_4_threshold_month"></span></td>
+          <td><span id="plan_5_threshold_month"></span></td>
           <td><span id="plan_postgrad_threshold_month"></span></td>
+        </tr>
+        <tr>
+          <td>Rate</td>
+          <td>9%</td>
+          <td>9%</td>
+          <td>9%</td>
+          <td>9%</td>
+          <td>6%</td>
         </tr>
       </table>
 
+  <!-- Simplified results table -->
       <table>
         <tr>
-          <th>Plans 1, 2 & 4</th>
-          <th rowspan="2">Income less threshold</th>
-          <th rowspan="2">Monthly SF Payment</th>
-          <th rowspan="2">Annual SF Payment</th>
+          <th>Plan</th>
+          <th>Monthly Payment</th>
+          <th>Annual Payment</th>
         </tr>
-        <tr>
-          <td>9%<span id="plan_123_tax_rate"></span></td>
-        </tr>
-        <tr>
-          <th>Postgraduate</th>
-          <td rowspan="2" id="income_less_threshold"><span id=""></span></td>
-          <td rowspan="2" id="monthly_sf_payment"><span id=""></span></td>
-          <td rowspan="2" id="annual_sf_payment"><span id=""></span></td>
-        </tr>
-        <tr>
-          <td>6%<span id="postgrad_tax_rate"></span></td>
+        <tbody id="sf_breakdown">
+          <!-- Rows generated dynamically -->
+        </tbody>
+        <tr class="total-row">
+          <th>Total</th>
+          <td id="total_monthly_sf"></td>
+          <td id="total_annual_sf"></td>
         </tr>
       </table>
     </div>
@@ -134,7 +155,7 @@
 
     <div class="national_insurance">
       <h2>National Insurance (NI)</h2>
-      <p class="section_notice">Does not include Class 2 National Insurance for self-employment*</p>
+      <p class="section_notice">Does not yet cover Class 2 National Insurance contributions*</p>
       <p>NI Taxable Income: <span id="ni_taxable_income"></span></p>
 
       <table>
@@ -164,7 +185,7 @@
 
 
     <div class="net_figures">
-      <h2>Net & Gross figures</h2>
+      <h2>Earnings summary</h2>
       <p>Gross Annual Salary: <span id="gross_annual_salary"></span></p>
       <p>Gross Monthly Salary: <span id="gross_monthly_salary"></span></p>
       <p>Gross Weekly Salary: <span id="gross_weekly_salary"></span></p>
