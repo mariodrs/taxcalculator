@@ -34,8 +34,8 @@
       <p>Gross Income Minus Pension: <span id="gross_income_minus_pension"></span></p>
       <p>100k Personal Allowance rule: <span id="personal_allowance_rule"></span></p>
       <p>100k Personal Allowance Deduction: <span id="personal_allowance_deduction"></span></p>
-      <p>Applicable Tax Rate: </th><th><span id="applicable_tax_rate"></span></p>
       <p>Personal Allowance: <span id="personal_allowance"></span></p>
+      <p>Applicable Tax Rate: </th><th><span id="applicable_tax_rate"></span></p>
 
       <table>
         <tr>
@@ -101,53 +101,58 @@
   <!-- Thresholds table -->
       <table>
         <tr>
-          <th>SF Thresholds</th>
-          <th>Plan 1</th>
-          <th>Plan 2</th>
-          <th>Plan 4</th>
-          <th>Plan 5</th>
-          <th>Postgraduate</th>
+          <th>Plan</th>
+          <th>Annual Threshold</th>
+          <th>Monthly Threshold</th>
+          <th>Rate</th>
         </tr>
         <tr>
-          <td>Annually</td>
+          <td>Plan 1</td>
           <td><span id="plan_1_threshold"></span></td>
-          <td><span id="plan_2_threshold"></span></td>
-          <td><span id="plan_4_threshold"></span></td>
-          <td><span id="plan_5_threshold"></span></td>
-          <td><span id="plan_postgrad_threshold"></span></td>
-        </tr>
-        <tr>
-          <td>Monthly</td>
           <td><span id="plan_1_threshold_month"></span></td>
-          <td><span id="plan_2_threshold_month"></span></td>
-          <td><span id="plan_4_threshold_month"></span></td>
-          <td><span id="plan_5_threshold_month"></span></td>
-          <td><span id="plan_postgrad_threshold_month"></span></td>
+          <td><span id="plan_1_tax_rate"></span></td>
         </tr>
         <tr>
-          <td>Rate</td>
-          <td>9%</td>
-          <td>9%</td>
-          <td>9%</td>
-          <td>9%</td>
-          <td>6%</td>
+          <td>Plan 2</td>
+          <td><span id="plan_2_threshold"></span></td>
+          <td><span id="plan_2_threshold_month"></span></td>
+          <td><span id="plan_2_tax_rate"></span></td>
         </tr>
+        <tr>
+          <td>Plan 4</td>
+          <td><span id="plan_4_threshold"></span></td>
+          <td><span id="plan_4_threshold_month"></span></td>
+          <td><span id="plan_4_tax_rate"></span></td>
+        </tr>
+        <tr>
+          <td>Plan 5</td>
+          <td><span id="plan_5_threshold"></span></td>
+          <td><span id="plan_5_threshold_month"></span></td>
+          <td><span id="plan_5_tax_rate"></span></td>
+        </tr>
+        <tr>
+          <td>Postgraduate</td>
+          <td><span id="plan_postgrad_threshold"></span></td>
+          <td><span id="plan_postgrad_threshold_month"></span></td>
+          <td><span id="postgrad_tax_rate"></span></td>
+        </tr>
+
       </table>
 
   <!-- Simplified results table -->
       <table>
         <tr>
           <th>Plan</th>
-          <th>Monthly Payment</th>
           <th>Annual Payment</th>
+          <th>Monthly Payment</th>
         </tr>
         <tbody id="sf_breakdown">
           <!-- Rows generated dynamically -->
         </tbody>
         <tr class="total-row">
           <th>Total</th>
-          <td id="total_monthly_sf"></td>
           <td id="total_annual_sf"></td>
+          <td id="total_monthly_sf"></td>
         </tr>
       </table>
     </div>

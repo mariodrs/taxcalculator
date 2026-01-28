@@ -137,10 +137,16 @@ function updateAllCalculations() {
     document.getElementById('plan_5_threshold_month').textContent = `£${(PLAN_5_THRESHHOLD / 12).toFixed(2)}`;
     document.getElementById('plan_postgrad_threshold_month').textContent = `£${(PLAN_POSTGRAD_THRESHHOLD / 12).toFixed(2)}`;
 
+    document.getElementById('plan_1_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
+    document.getElementById('plan_2_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
+    document.getElementById('plan_4_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
+    document.getElementById('plan_5_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
+    document.getElementById('postgrad_tax_rate').textContent = `${POSTGRAD_TAX_RATE}%`;
+
     // Clear student finance breakdown
     document.getElementById('sf_breakdown').innerHTML = '<tr><td colspan="3" style="color:#D22B2B;"}>Enter salary and pension details*</td></tr>';
-    document.getElementById('total_monthly_sf').textContent = '£ ~';
     document.getElementById('total_annual_sf').textContent = '£ ~';
+    document.getElementById('total_monthly_sf').textContent = '£ ~';
 
     return;
   }
@@ -317,8 +323,8 @@ function updateAllCalculations() {
   plan_5_checked = document.getElementById('plan_5').checked;
   postgrad_checked = document.getElementById('postgraduate').checked;
 
-  total_monthly_sf = 0;
   total_annual_sf = 0;
+  total_monthly_sf = 0;
 
   // Calculate all plans first, store results
   plan_1_result = null;
@@ -495,8 +501,8 @@ function updateAllCalculations() {
     sf_breakdown_html += `
       <tr>
         <td>Plan 1</td>
-        <td>£${plan_1_result.monthly.toFixed(2)}</td>
         <td>£${plan_1_result.annual.toFixed(2)}</td>
+        <td>£${plan_1_result.monthly.toFixed(2)}</td>
       </tr>
     `;
   }
@@ -505,8 +511,8 @@ function updateAllCalculations() {
     sf_breakdown_html += `
       <tr>
         <td>Plan 2</td>
-        <td>£${plan_2_result.monthly.toFixed(2)}</td>
         <td>£${plan_2_result.annual.toFixed(2)}</td>
+        <td>£${plan_2_result.monthly.toFixed(2)}</td>
       </tr>
     `;
   }
@@ -515,8 +521,8 @@ function updateAllCalculations() {
     sf_breakdown_html += `
       <tr>
         <td>Plan 4</td>
-        <td>£${plan_4_result.monthly.toFixed(2)}</td>
         <td>£${plan_4_result.annual.toFixed(2)}</td>
+        <td>£${plan_4_result.monthly.toFixed(2)}</td>
       </tr>
     `;
   }
@@ -525,8 +531,8 @@ function updateAllCalculations() {
     sf_breakdown_html += `
       <tr>
         <td>Plan 5</td>
-        <td>£${plan_5_result.monthly.toFixed(2)}</td>
         <td>£${plan_5_result.annual.toFixed(2)}</td>
+        <td>£${plan_5_result.monthly.toFixed(2)}</td>
       </tr>
     `;
   }
@@ -535,25 +541,25 @@ function updateAllCalculations() {
     sf_breakdown_html += `
       <tr>
         <td>Postgraduate</td>
-        <td>£${postgrad_result.monthly.toFixed(2)}</td>
         <td>£${postgrad_result.annual.toFixed(2)}</td>
+        <td>£${postgrad_result.monthly.toFixed(2)}</td>
       </tr>
     `;
   }
 
   // If no plans selected
   if (sf_breakdown_html === '') {
-    sf_breakdown_html = '<tr><td colspan="3">~</td></tr>';
+    sf_breakdown_html = '<tr><td colspan="3">No repayment due — plan not selected or below threshold</td></tr>';
   }
 
   // Update the DOM
   document.getElementById('sf_breakdown').innerHTML = sf_breakdown_html;
-  document.getElementById('total_monthly_sf').textContent = `£${total_monthly_sf.toFixed(2)}`;
   document.getElementById('total_annual_sf').textContent = `£${total_annual_sf.toFixed(2)}`;
+  document.getElementById('total_monthly_sf').textContent = `£${total_monthly_sf.toFixed(2)}`;
 
   // Set these for use in other calculations
-  monthly_sf_payment = total_monthly_sf;
   annual_sf_payment = total_annual_sf;
+  monthly_sf_payment = total_monthly_sf;
 
   //---------------------------------------------------------------------------------------------------------------------
 
@@ -602,6 +608,13 @@ function updateAllCalculations() {
   document.getElementById('plan_4_threshold_month').textContent = `£${(PLAN_4_THRESHHOLD / 12).toFixed(2)}`;
   document.getElementById('plan_5_threshold_month').textContent = `£${(PLAN_5_THRESHHOLD / 12).toFixed(2)}`;
   document.getElementById('plan_postgrad_threshold_month').textContent = `£${(PLAN_POSTGRAD_THRESHHOLD / 12).toFixed(2)}`;
+
+  document.getElementById('plan_1_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
+  document.getElementById('plan_2_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
+  document.getElementById('plan_4_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
+  document.getElementById('plan_5_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
+  document.getElementById('postgrad_tax_rate').textContent = `${POSTGRAD_TAX_RATE}%`;
+
 }
 
 //Calling updateAllCalculations() when the page loads to initialize the display of £ and - where relevant

@@ -185,14 +185,6 @@ select:hover {
   transition: all 0.3s ease;
 }
 
-/* .income_tax:hover, .pension:hover, .national_insurance:hover,
-.student_finance:hover, .net_figures:hover {
-  background: var(--card-bg-hover);
-  border-color: var(--card-border-hover);
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px var(--card-shadow);
-} */
-
 /* Headings */
 h2 {
   background: linear-gradient(135deg, var(--heading-gradient-start) 0%, var(--heading-gradient-mid) 100%);
@@ -236,6 +228,10 @@ h2::after {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+}
+
+.plan-checkboxes label {
+  margin: 5px;
 }
 
 /* Label */
@@ -378,15 +374,11 @@ p span {
   font-size: 0.9rem;
 }
 
-/* Option 1: Use !important */
-#net_take_home_figure {
-  color: #87e59b !important;
-  -webkit-text-fill-color: #87e59b !important;
-}
-
+#net_take_home_figure,
 #net_monthly_take_home_figure {
-  color: #87e59b !important;
-  -webkit-text-fill-color: #87e59b !important;
+  background: linear-gradient(135deg, #33a75c 0%, #6fdc9f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Table Styles */
@@ -408,7 +400,7 @@ th {
   padding: 14px 8px;
   text-align: center;
   text-transform: uppercase;
-  font-size: clamp(0.5rem, 1vw, 0.6rem);
+  font-size: clamp(0.7rem, 1vw, 0.7rem);
   word-wrap: break-word;
 }
 
@@ -416,7 +408,7 @@ td {
   border: 1px solid var(--table-border);
   text-align: center;
   padding: 12px 8px;
-  font-size: clamp(0.6rem, 1.2vw, 0.75rem);
+  font-size: clamp(0.7rem, 1vw, 0.7rem);
   word-wrap: break-word;
   color: var(--text-primary);
   font-weight: 500;
@@ -464,11 +456,9 @@ tr:hover {
     margin: 10px 0 5px 0;
   }
   th {
-    font-size: clamp(0.5rem, 1.8vw, 0.7rem);
     padding: 12px 6px;
   }
   td {
-    font-size: clamp(0.6rem, 1.8vw, 0.8rem);
     padding: 10px 6px;
   }
 }
@@ -482,11 +472,9 @@ tr:hover {
     font-size: 0.9rem;
   }
   th {
-    font-size: clamp(0.45rem, 2.2vw, 0.65rem);
     padding: 10px 4px;
   }
   td {
-    font-size: clamp(0.55rem, 2.2vw, 0.75rem);
     padding: 8px 4px;
   }
 }
