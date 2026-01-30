@@ -18,7 +18,6 @@ themeToggle.addEventListener('click', () => {
   localStorage.setItem('theme', newTheme);
 });
 
-
 //------------------------------------------------------------------------------
 
 
@@ -125,17 +124,17 @@ function updateAllCalculations() {
     document.getElementById('gross_daily_salary').textContent = '£ ~';
     document.getElementById('gross_hourly_salary').textContent = '£ ~';
 
-    document.getElementById('plan_1_threshold').textContent = `£${PLAN_1_THRESHHOLD}`;
-    document.getElementById('plan_2_threshold').textContent = `£${PLAN_2_THRESHHOLD}`;
-    document.getElementById('plan_4_threshold').textContent = `£${PLAN_4_THRESHHOLD}`;
-    document.getElementById('plan_5_threshold').textContent = `£${PLAN_5_THRESHHOLD}`;
-    document.getElementById('plan_postgrad_threshold').textContent = `£${PLAN_POSTGRAD_THRESHHOLD}`;
+    document.getElementById('plan_1_threshold').textContent = `£${Intl.NumberFormat('en-GB').format(PLAN_1_THRESHHOLD)}`;
+    document.getElementById('plan_2_threshold').textContent = `£${Intl.NumberFormat('en-GB').format(PLAN_2_THRESHHOLD)}`;
+    document.getElementById('plan_4_threshold').textContent = `£${Intl.NumberFormat('en-GB').format(PLAN_4_THRESHHOLD)}`;
+    document.getElementById('plan_5_threshold').textContent = `£${Intl.NumberFormat('en-GB').format(PLAN_5_THRESHHOLD)}`;
+    document.getElementById('plan_postgrad_threshold').textContent = `£${Intl.NumberFormat('en-GB').format(PLAN_POSTGRAD_THRESHHOLD)}`;
 
-    document.getElementById('plan_1_threshold_month').textContent = `£${(PLAN_1_THRESHHOLD / 12).toFixed(2)}`;
-    document.getElementById('plan_2_threshold_month').textContent = `£${(PLAN_2_THRESHHOLD / 12).toFixed(2)}`;
-    document.getElementById('plan_4_threshold_month').textContent = `£${(PLAN_4_THRESHHOLD / 12).toFixed(2)}`;
-    document.getElementById('plan_5_threshold_month').textContent = `£${(PLAN_5_THRESHHOLD / 12).toFixed(2)}`;
-    document.getElementById('plan_postgrad_threshold_month').textContent = `£${(PLAN_POSTGRAD_THRESHHOLD / 12).toFixed(2)}`;
+    document.getElementById('plan_1_threshold_month').textContent = `£${Intl.NumberFormat('en-GB').format((PLAN_1_THRESHHOLD / 12).toFixed(2))}`;
+    document.getElementById('plan_2_threshold_month').textContent = `£${Intl.NumberFormat('en-GB').format((PLAN_2_THRESHHOLD / 12).toFixed(2))}`;
+    document.getElementById('plan_4_threshold_month').textContent = `£${Intl.NumberFormat('en-GB').format((PLAN_4_THRESHHOLD / 12).toFixed(2))}`;
+    document.getElementById('plan_5_threshold_month').textContent = `£${Intl.NumberFormat('en-GB').format((PLAN_5_THRESHHOLD / 12).toFixed(2))}`;
+    document.getElementById('plan_postgrad_threshold_month').textContent = `£${Intl.NumberFormat('en-GB').format((PLAN_POSTGRAD_THRESHHOLD / 12).toFixed(2))}`;
 
     document.getElementById('plan_1_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
     document.getElementById('plan_2_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
@@ -158,11 +157,11 @@ function updateAllCalculations() {
   //Pension Section
   //Annual Pension Contribution
   annual_pension = gross_salary * (pension_contribution_percentage / 100);
-  document.getElementById('annual_pension_contribution').textContent = `£${annual_pension.toFixed(2)}`;
+  document.getElementById('annual_pension_contribution').textContent = `£${Intl.NumberFormat('en-GB').format(annual_pension.toFixed(2))}`;
 
   //Monthly Pension Contribution
   monthly_pension = annual_pension / 12;
-  document.getElementById('monthly_pension_contribution').textContent = `£${monthly_pension.toFixed(2)}`;
+  document.getElementById('monthly_pension_contribution').textContent = `£${Intl.NumberFormat('en-GB').format(monthly_pension.toFixed(2))}`;
 
 
   //----------------------------------------------------------------------------
@@ -171,7 +170,7 @@ function updateAllCalculations() {
   //Top Salary Section
   //Gross Income Minus Pension
   gross_income_minus_pension = gross_salary - annual_pension;
-  document.getElementById('gross_income_minus_pension').textContent = `£${gross_income_minus_pension.toFixed(2)}`;
+  document.getElementById('gross_income_minus_pension').textContent = `£${Intl.NumberFormat('en-GB').format(gross_income_minus_pension.toFixed(2))}`;
 
 
   //100k Tax band Personal Allowance rule
@@ -181,7 +180,7 @@ function updateAllCalculations() {
   } else {
     personal_allowance_rule = 0;
   }
-  document.getElementById('personal_allowance_rule').textContent = `£${personal_allowance_rule.toFixed(2)}`;
+  document.getElementById('personal_allowance_rule').textContent = `£${Intl.NumberFormat('en-GB').format(personal_allowance_rule.toFixed(2))}`;
 
 
   //100k Personal Allowance Deduction
@@ -191,7 +190,7 @@ function updateAllCalculations() {
   } else {
     personal_allowance_deduction = personal_allowance_rule / 2;
   }
-  document.getElementById('personal_allowance_deduction').textContent = `£${personal_allowance_deduction.toFixed(2)}`;
+  document.getElementById('personal_allowance_deduction').textContent = `£${Intl.NumberFormat('en-GB').format(personal_allowance_deduction.toFixed(2))}`;
 
 
   //Applicable Tax Rate
@@ -213,12 +212,12 @@ function updateAllCalculations() {
   } else {
     personal_allowance = gross_income_minus_pension;
   }
-  document.getElementById('personal_allowance').textContent = `£${personal_allowance.toFixed(2)}`;
+  document.getElementById('personal_allowance').textContent = `£${Intl.NumberFormat('en-GB').format(personal_allowance.toFixed(2))}`;
 
 
   //Taxable Income
   taxable_income = gross_income_minus_pension - personal_allowance;
-  document.getElementById('taxable_income').textContent = `£${taxable_income.toFixed(2)}`;
+  document.getElementById('taxable_income').textContent = `£${Intl.NumberFormat('en-GB').format(taxable_income.toFixed(2))}`;
 
 
   //Tax Rate Table
@@ -228,11 +227,11 @@ function updateAllCalculations() {
   } else {
     basic_rate_taxable_income = taxable_income;
   }
-  document.getElementById('basic_rate_taxable_income').textContent = `£${basic_rate_taxable_income.toFixed(2)}`;
+  document.getElementById('basic_rate_taxable_income').textContent = `£${Intl.NumberFormat('en-GB').format(basic_rate_taxable_income.toFixed(2))}`;
 
     //Basic Rate Taxable Pay
   basic_rate_taxable_pay = basic_rate_taxable_income * (BASIC_RATE_PERCENTAGE/100);
-  document.getElementById('basic_rate_taxable_pay').textContent = `£${basic_rate_taxable_pay.toFixed(2)}`;
+  document.getElementById('basic_rate_taxable_pay').textContent = `£${Intl.NumberFormat('en-GB').format(basic_rate_taxable_pay.toFixed(2))}`;
 
 
     //Additional Rate Taxable Income
@@ -241,10 +240,10 @@ function updateAllCalculations() {
   } else {
     additional_rate_taxable_income = taxable_income - HIGHER_RATE_LIMIT;
   }
-  document.getElementById('additional_rate_taxable_income').textContent = `£${additional_rate_taxable_income.toFixed(2)}`;
+  document.getElementById('additional_rate_taxable_income').textContent = `£${Intl.NumberFormat('en-GB').format(additional_rate_taxable_income.toFixed(2))}`;
     //Additional Rate Taxable Pay
   additional_rate_taxable_pay = additional_rate_taxable_income * (ADDITIONAL_RATE_PERCENTAGE/100);
-  document.getElementById('additional_rate_taxable_pay').textContent = `£${additional_rate_taxable_pay.toFixed(2)}`;
+  document.getElementById('additional_rate_taxable_pay').textContent = `£${Intl.NumberFormat('en-GB').format(additional_rate_taxable_pay.toFixed(2))}`;
 
 
     //Higher Rate Taxable Income
@@ -253,18 +252,18 @@ function updateAllCalculations() {
   } else {
     higher_rate_taxable_income = 0;
   }
-  document.getElementById('higher_rate_taxable_income').textContent = `£${higher_rate_taxable_income.toFixed(2)}`;
+  document.getElementById('higher_rate_taxable_income').textContent = `£${Intl.NumberFormat('en-GB').format(higher_rate_taxable_income.toFixed(2))}`;
     //Higher Rate Taxable Pay
   higher_rate_taxable_pay = higher_rate_taxable_income * (HIGHER_RATE_PERCENTAGE/100);
-  document.getElementById('higher_rate_taxable_pay').textContent = `£${higher_rate_taxable_pay.toFixed(2)}`;
+  document.getElementById('higher_rate_taxable_pay').textContent = `£${Intl.NumberFormat('en-GB').format(higher_rate_taxable_pay.toFixed(2))}`;
 
   //Total Tax Payable
   total_tax_payable = basic_rate_taxable_pay + higher_rate_taxable_pay + additional_rate_taxable_pay
-  document.getElementById('total_tax_payable').textContent = `£${total_tax_payable.toFixed(2)}`;
+  document.getElementById('total_tax_payable').textContent = `£${Intl.NumberFormat('en-GB').format(total_tax_payable.toFixed(2))}`;
 
   //Post Tax Income
   post_tax_income = gross_income_minus_pension - total_tax_payable
-  document.getElementById('post_tax_income').textContent = `£${post_tax_income.toFixed(2)}`;
+  document.getElementById('post_tax_income').textContent = `£${Intl.NumberFormat('en-GB').format(post_tax_income.toFixed(2))}`;
 
 
   //----------------------------------------------------------------------------
@@ -276,7 +275,7 @@ function updateAllCalculations() {
   } else {
     ni_taxable_income = 0;
   }
-  document.getElementById('ni_taxable_income').textContent = `£${ni_taxable_income.toFixed(2)}`;
+  document.getElementById('ni_taxable_income').textContent = `£${Intl.NumberFormat('en-GB').format(ni_taxable_income.toFixed(2))}`;
 
 
   //NI Higher rate table
@@ -285,10 +284,10 @@ function updateAllCalculations() {
   } else {
     ni_higher_rate_taxable_income = gross_income_minus_pension - BASIC_RATE_LIMIT;
   }
-  document.getElementById('ni_higher_rate_taxable_income').textContent = `£${ni_higher_rate_taxable_income.toFixed(2)}`;
+  document.getElementById('ni_higher_rate_taxable_income').textContent = `£${Intl.NumberFormat('en-GB').format(ni_higher_rate_taxable_income.toFixed(2))}`;
 
   ni_higher_rate_taxable_pay = ni_higher_rate_taxable_income * (NI_HIGHER_RATE_PERCENTAGE / 100);
-  document.getElementById('ni_higher_rate_taxable_pay').textContent = `£${ni_higher_rate_taxable_pay.toFixed(2)}`;
+  document.getElementById('ni_higher_rate_taxable_pay').textContent = `£${Intl.NumberFormat('en-GB').format(ni_higher_rate_taxable_pay.toFixed(2))}`;
 
 
   //NI Basic rate table
@@ -297,20 +296,20 @@ function updateAllCalculations() {
   } else {
     ni_basic_rate_taxable_income = ni_taxable_income;
   }
-  document.getElementById('ni_basic_rate_taxable_income').textContent = `£${ni_basic_rate_taxable_income.toFixed(2)}`;
+  document.getElementById('ni_basic_rate_taxable_income').textContent = `£${Intl.NumberFormat('en-GB').format(ni_basic_rate_taxable_income.toFixed(2))}`;
 
   ni_basic_rate_taxable_pay = ni_basic_rate_taxable_income * (NI_BASIC_RATE_PERCENTAGE / 100);
-  document.getElementById('ni_basic_rate_taxable_pay').textContent = `£${ni_basic_rate_taxable_pay.toFixed(2)}`;
+  document.getElementById('ni_basic_rate_taxable_pay').textContent = `£${Intl.NumberFormat('en-GB').format(ni_basic_rate_taxable_pay.toFixed(2))}`;
 
 
   //Total NI
   total_ni = ni_basic_rate_taxable_pay + ni_higher_rate_taxable_pay
-  document.getElementById('total_ni').textContent = `£${total_ni.toFixed(2)}`;
+  document.getElementById('total_ni').textContent = `£${Intl.NumberFormat('en-GB').format(total_ni.toFixed(2))}`;
 
 
   //Monthly NI
   monthly_ni = total_ni / 12
-  document.getElementById('monthly_ni').textContent = `£${monthly_ni.toFixed(2)}`;
+  document.getElementById('monthly_ni').textContent = `£${Intl.NumberFormat('en-GB').format(monthly_ni.toFixed(2))}`;
 
 
   //----------------------------------------------------------------------------
@@ -501,8 +500,8 @@ function updateAllCalculations() {
     sf_breakdown_html += `
       <tr>
         <td>Plan 1</td>
-        <td>£${plan_1_result.annual.toFixed(2)}</td>
-        <td>£${plan_1_result.monthly.toFixed(2)}</td>
+        <td>£${Intl.NumberFormat('en-GB').format(plan_1_result.annual.toFixed(2))}</td>
+        <td>£${Intl.NumberFormat('en-GB').format(plan_1_result.monthly.toFixed(2))}</td>
       </tr>
     `;
   }
@@ -511,8 +510,8 @@ function updateAllCalculations() {
     sf_breakdown_html += `
       <tr>
         <td>Plan 2</td>
-        <td>£${plan_2_result.annual.toFixed(2)}</td>
-        <td>£${plan_2_result.monthly.toFixed(2)}</td>
+        <td>£${Intl.NumberFormat('en-GB').format(plan_2_result.annual.toFixed(2))}</td>
+        <td>£${Intl.NumberFormat('en-GB').format(plan_2_result.monthly.toFixed(2))}</td>
       </tr>
     `;
   }
@@ -521,8 +520,8 @@ function updateAllCalculations() {
     sf_breakdown_html += `
       <tr>
         <td>Plan 4</td>
-        <td>£${plan_4_result.annual.toFixed(2)}</td>
-        <td>£${plan_4_result.monthly.toFixed(2)}</td>
+        <td>£${Intl.NumberFormat('en-GB').format(plan_4_result.annual.toFixed(2))}</td>
+        <td>£${Intl.NumberFormat('en-GB').format(plan_4_result.monthly.toFixed(2))}</td>
       </tr>
     `;
   }
@@ -531,8 +530,8 @@ function updateAllCalculations() {
     sf_breakdown_html += `
       <tr>
         <td>Plan 5</td>
-        <td>£${plan_5_result.annual.toFixed(2)}</td>
-        <td>£${plan_5_result.monthly.toFixed(2)}</td>
+        <td>£${Intl.NumberFormat('en-GB').format(plan_5_result.annual.toFixed(2))}</td>
+        <td>£${Intl.NumberFormat('en-GB').format(plan_5_result.monthly.toFixed(2))}</td>
       </tr>
     `;
   }
@@ -541,8 +540,8 @@ function updateAllCalculations() {
     sf_breakdown_html += `
       <tr>
         <td>Postgraduate</td>
-        <td>£${postgrad_result.annual.toFixed(2)}</td>
-        <td>£${postgrad_result.monthly.toFixed(2)}</td>
+        <td>£${Intl.NumberFormat('en-GB').format(postgrad_result.annual.toFixed(2))}</td>
+        <td>£${Intl.NumberFormat('en-GB').format(postgrad_result.monthly.toFixed(2))}</td>
       </tr>
     `;
   }
@@ -554,8 +553,8 @@ function updateAllCalculations() {
 
   // Update the DOM
   document.getElementById('sf_breakdown').innerHTML = sf_breakdown_html;
-  document.getElementById('total_annual_sf').textContent = `£${total_annual_sf.toFixed(2)}`;
-  document.getElementById('total_monthly_sf').textContent = `£${total_monthly_sf.toFixed(2)}`;
+  document.getElementById('total_annual_sf').textContent = `£${Intl.NumberFormat('en-GB').format(total_annual_sf.toFixed(2))}`;
+  document.getElementById('total_monthly_sf').textContent = `£${Intl.NumberFormat('en-GB').format(total_monthly_sf.toFixed(2))}`;
 
   // Set these for use in other calculations
   annual_sf_payment = total_annual_sf;
@@ -565,49 +564,49 @@ function updateAllCalculations() {
 
   //Net & Gross figures
   net_take_home_figure = post_tax_income - total_ni - annual_sf_payment;
-  document.getElementById('net_take_home_figure').textContent =`£${net_take_home_figure.toFixed(2)}`;
+  document.getElementById('net_take_home_figure').textContent =`£${Intl.NumberFormat('en-GB').format(net_take_home_figure.toFixed(2))}`;
 
   net_monthly_take_home_figure = net_take_home_figure / 12;
-  document.getElementById('net_monthly_take_home_figure').textContent =`£${net_monthly_take_home_figure.toFixed(2)}`;
+  document.getElementById('net_monthly_take_home_figure').textContent =`£${Intl.NumberFormat('en-GB').format(net_monthly_take_home_figure.toFixed(2))}`;
 
-  document.getElementById('annual_pension_figure').textContent =`£${annual_pension.toFixed(2)}`;
+  document.getElementById('annual_pension_figure').textContent =`£${Intl.NumberFormat('en-GB').format(annual_pension.toFixed(2))}`;
 
-  document.getElementById('monthly_pension_figure').textContent =`£${monthly_pension.toFixed(2)}`;
+  document.getElementById('monthly_pension_figure').textContent =`£${Intl.NumberFormat('en-GB').format(monthly_pension.toFixed(2))}`;
 
-  document.getElementById('annual_sf_figure').textContent =`£${annual_sf_payment.toFixed(2)}`;
+  document.getElementById('annual_sf_figure').textContent =`£${Intl.NumberFormat('en-GB').format(annual_sf_payment.toFixed(2))}`;
 
-  document.getElementById('monthly_sf_figure').textContent =`£${monthly_sf_payment.toFixed(2)}`;
+  document.getElementById('monthly_sf_figure').textContent =`£${Intl.NumberFormat('en-GB').format(monthly_sf_payment.toFixed(2))}`;
 
-  document.getElementById('annual_ni_figure').textContent =`£${total_ni.toFixed(2)}`;
+  document.getElementById('annual_ni_figure').textContent =`£${Intl.NumberFormat('en-GB').format(total_ni.toFixed(2))}`;
 
-  document.getElementById('monthly_ni_figure').textContent =`£${monthly_ni.toFixed(2)}`;
+  document.getElementById('monthly_ni_figure').textContent =`£${Intl.NumberFormat('en-GB').format(monthly_ni.toFixed(2))}`;
 
-  document.getElementById('gross_annual_salary').textContent = `£${Number(gross_salary).toFixed(2)}`;
+  document.getElementById('gross_annual_salary').textContent = `£${Intl.NumberFormat('en-GB').format(Number(gross_salary).toFixed(2))}`;
 
   gross_monthly_salary = gross_salary / 12;
-  document.getElementById('gross_monthly_salary').textContent = `£${gross_monthly_salary.toFixed(2)}`;
+  document.getElementById('gross_monthly_salary').textContent = `£${Intl.NumberFormat('en-GB').format(gross_monthly_salary.toFixed(2))}`;
 
   gross_weekly_salary = gross_salary / 52;
-  document.getElementById('gross_weekly_salary').textContent = `£${gross_weekly_salary.toFixed(2)}`;
+  document.getElementById('gross_weekly_salary').textContent = `£${Intl.NumberFormat('en-GB').format(gross_weekly_salary.toFixed(2))}`;
 
   gross_daily_salary = gross_weekly_salary / 5;
-  document.getElementById('gross_daily_salary').textContent = `£${gross_daily_salary.toFixed(2)}`;
+  document.getElementById('gross_daily_salary').textContent = `£${Intl.NumberFormat('en-GB').format(gross_daily_salary.toFixed(2))}`;
 
   gross_hourly_salary = gross_weekly_salary / 40;
-  document.getElementById('gross_hourly_salary').textContent = `£${gross_hourly_salary.toFixed(2)}`;
+  document.getElementById('gross_hourly_salary').textContent = `£${Intl.NumberFormat('en-GB').format(gross_hourly_salary.toFixed(2))}`;
 
   // Update student finance thresholds table
-  document.getElementById('plan_1_threshold').textContent = `£${PLAN_1_THRESHHOLD}`;
-  document.getElementById('plan_2_threshold').textContent = `£${PLAN_2_THRESHHOLD}`;
-  document.getElementById('plan_4_threshold').textContent = `£${PLAN_4_THRESHHOLD}`;
-  document.getElementById('plan_5_threshold').textContent = `£${PLAN_5_THRESHHOLD}`;
-  document.getElementById('plan_postgrad_threshold').textContent = `£${PLAN_POSTGRAD_THRESHHOLD}`;
+  document.getElementById('plan_1_threshold').textContent = `£${Intl.NumberFormat('en-GB').format(PLAN_1_THRESHHOLD)}`;
+  document.getElementById('plan_2_threshold').textContent = `£${Intl.NumberFormat('en-GB').format(PLAN_2_THRESHHOLD)}`;
+  document.getElementById('plan_4_threshold').textContent = `£${Intl.NumberFormat('en-GB').format(PLAN_4_THRESHHOLD)}`;
+  document.getElementById('plan_5_threshold').textContent = `£${Intl.NumberFormat('en-GB').format(PLAN_5_THRESHHOLD)}`;
+  document.getElementById('plan_postgrad_threshold').textContent = `£${Intl.NumberFormat('en-GB').format(PLAN_POSTGRAD_THRESHHOLD)}`;
 
-  document.getElementById('plan_1_threshold_month').textContent = `£${(PLAN_1_THRESHHOLD / 12).toFixed(2)}`;
-  document.getElementById('plan_2_threshold_month').textContent = `£${(PLAN_2_THRESHHOLD / 12).toFixed(2)}`;
-  document.getElementById('plan_4_threshold_month').textContent = `£${(PLAN_4_THRESHHOLD / 12).toFixed(2)}`;
-  document.getElementById('plan_5_threshold_month').textContent = `£${(PLAN_5_THRESHHOLD / 12).toFixed(2)}`;
-  document.getElementById('plan_postgrad_threshold_month').textContent = `£${(PLAN_POSTGRAD_THRESHHOLD / 12).toFixed(2)}`;
+  document.getElementById('plan_1_threshold_month').textContent = `£${Intl.NumberFormat('en-GB').format((PLAN_1_THRESHHOLD / 12).toFixed(2))}`;
+  document.getElementById('plan_2_threshold_month').textContent = `£${Intl.NumberFormat('en-GB').format((PLAN_2_THRESHHOLD / 12).toFixed(2))}`;
+  document.getElementById('plan_4_threshold_month').textContent = `£${Intl.NumberFormat('en-GB').format((PLAN_4_THRESHHOLD / 12).toFixed(2))}`;
+  document.getElementById('plan_5_threshold_month').textContent = `£${Intl.NumberFormat('en-GB').format((PLAN_5_THRESHHOLD / 12).toFixed(2))}`;
+  document.getElementById('plan_postgrad_threshold_month').textContent = `£${Intl.NumberFormat('en-GB').format((PLAN_POSTGRAD_THRESHHOLD / 12).toFixed(2))}`;
 
   document.getElementById('plan_1_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
   document.getElementById('plan_2_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
