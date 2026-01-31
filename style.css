@@ -174,7 +174,7 @@ select:hover {
 }
 
 /* Container */
-.income_tax, .pension, .national_insurance, .student_finance, .net_figures {
+.income_tax, .pension, .national_insurance, .student_finance, .summary {
   background: var(--card-bg);
   backdrop-filter: blur(20px);
   border: 1px solid var(--card-border);
@@ -377,6 +377,12 @@ p span {
 #net_take_home_figure,
 #net_monthly_take_home_figure {
   background: linear-gradient(135deg, #33a75c 0%, #6fdc9f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#effective_tax_rate {
+  background: linear-gradient(135deg, #d32f2f 0%, #ff5252 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

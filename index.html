@@ -8,6 +8,9 @@
   </head>
   <body>
 
+  <!----------------------------------->
+  <!-- Header -->
+  <!----------------------------------->
   <header class="page-header">
     <h1>Take Home Tax Calculator</h1>
     <p class="subtitle">Calculate your take home income after Tax, National Insurance, Pension contributions and Student loans.</p>
@@ -18,19 +21,23 @@
   </header>
 
   <div class="container">
-
+    <!----------------------------------->
+    <!-- Pension section -->
+    <!----------------------------------->
     <div class="pension">
       <h2>Pension</h2>
-      <p class="section_notice">Currently only supports gross salary sacrifice contributions*</p>
-      <label>Pension Contribution %: <input type="number" inputmode="numeric" id="pension_contribution_input"></label>
+      <p class="section_notice">Currently only supports gross contributions, based on salary sacrifice %*</p>
+      <label>*Pension Contribution %: <input type="number" inputmode="numeric" id="pension_contribution_input"></label>
       <p>Annual Pension Contribution: <span id="annual_pension_contribution"></span></p>
       <p>Monthly Pension Contribution: <span id="monthly_pension_contribution"></span></p>
     </div>
 
-
+    <!----------------------------------->
+    <!-- Income Tax section -->
+    <!----------------------------------->
     <div class="income_tax">
     <h2>Income Tax</h2>
-      <label>Gross Salary: <input type="number" inputmode="numeric" id="gross_salary_input"></label>
+      <label>*Gross Salary: <input type="number" inputmode="numeric" id="gross_salary_input" ></label>
       <p>Gross Income Minus Pension: <span id="gross_income_minus_pension"></span></p>
       <p>100k Personal Allowance rule: <span id="personal_allowance_rule"></span></p>
       <p>100k Personal Allowance Deduction: <span id="personal_allowance_deduction"></span></p>
@@ -47,19 +54,19 @@
         <tr>
           <td>Basic rate</td>
           <td><span id="basic_rate_taxable_income"></span></td>
-          <td>20%</td>
+          <td id="basic_tax_rate"></td>
           <td><span id="basic_rate_taxable_pay"></td>
         </tr>
         <tr>
           <td>Higher rate</td>
           <td><span id="higher_rate_taxable_income"></span></td>
-          <td>40%</td>
+          <td id="higher_tax_rate"></td>
           <td><span id="higher_rate_taxable_pay"></td>
         </tr>
         <tr>
           <td>Additional rate</td>
           <td><span id="additional_rate_taxable_income"></span></td>
-          <td>45%</td>
+          <td id="additional_tax_rate"></td>
           <td><span id="additional_rate_taxable_pay"></td>
         </tr>
       </table>
@@ -69,7 +76,9 @@
       <p>Post Tax Income: <span id="post_tax_income"></span></p>
     </div>
 
-
+    <!----------------------------------->
+    <!-- Studen Finance section -->
+    <!----------------------------------->
     <div class="student_finance">
       <h2>Student Finance</h2>
       <p class="section_notice">Select all plans that apply to you*</p>
@@ -97,8 +106,7 @@
         </label>
       </div>
 
-  <!-- Threshold table stays the same -->
-  <!-- Thresholds table -->
+  <!-- Threshold table static -->
       <table>
         <tr>
           <th>Plan</th>
@@ -139,7 +147,7 @@
 
       </table>
 
-  <!-- Simplified results table -->
+  <!--  Payable results table -->
       <table>
         <tr>
           <th>Plan</th>
@@ -157,7 +165,9 @@
       </table>
     </div>
 
-
+    <!----------------------------------->
+    <!-- National Insurance section -->
+    <!----------------------------------->
     <div class="national_insurance">
       <h2>National Insurance (NI)</h2>
       <p class="section_notice">Does not yet cover Class 2 National Insurance contributions*</p>
@@ -188,9 +198,11 @@
       <p>Monthly National Insurance: <span id="monthly_ni"></span></p>
     </div>
 
-
-    <div class="net_figures">
-      <h2>Earnings summary</h2>
+    <!----------------------------------->
+    <!-- Summary section -->
+    <!----------------------------------->
+    <div class="summary">
+      <h2>Earnings Summary</h2>
       <p>Gross Annual Salary: <span id="gross_annual_salary"></span></p>
       <p>Gross Monthly Salary: <span id="gross_monthly_salary"></span></p>
       <p>Gross Weekly Salary: <span id="gross_weekly_salary"></span></p>
@@ -199,6 +211,7 @@
         <br>
       <p>Net Annual Take Home: <span id="net_take_home_figure"></span></p>
       <p>Net Monthly Take Home: <span id="net_monthly_take_home_figure"></span></p>
+      <p>Effective Tax Rate: <span id="effective_tax_rate"></span></p>
         <br>
       <p>Annual Pension Contribution: <span id="annual_pension_figure"></span></p>
       <p>Monthly Pension Contribution: <span id="monthly_pension_figure"></span></p>

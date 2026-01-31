@@ -1,4 +1,7 @@
+//------------------------------------------------------------------------------
 // Theme Toggle Functionality
+//------------------------------------------------------------------------------
+
 // Get the theme toggle button
 themeToggle = document.getElementById('theme-toggle');
 // Check for saved theme preference or default to dark mode
@@ -18,10 +21,12 @@ themeToggle.addEventListener('click', () => {
   localStorage.setItem('theme', newTheme);
 });
 
+
+//------------------------------------------------------------------------------
+// Calculator Functionality
 //------------------------------------------------------------------------------
 
 
-// Calculator Functionality
 const PERSONAL_ALLOWANCE_LIMIT = 12570;
 const BASIC_RATE_LIMIT = 50270;
 const HIGHER_RATE_LIMIT = 125140;
@@ -44,6 +49,30 @@ const PLAN_4_THRESHHOLD = 32745;
 const PLAN_5_THRESHHOLD = 25000;
 const PLAN_POSTGRAD_THRESHHOLD = 21000;
 
+//Static Income tax % and Student finance thresholds
+document.getElementById('basic_tax_rate').textContent = `${(BASIC_RATE_PERCENTAGE)}%`;
+document.getElementById('higher_tax_rate').textContent = `${(HIGHER_RATE_PERCENTAGE)}%`;
+document.getElementById('additional_tax_rate').textContent = `${(ADDITIONAL_RATE_PERCENTAGE)}%`;
+
+document.getElementById('plan_1_threshold').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 0,maximumFractionDigits: 2}).format(PLAN_1_THRESHHOLD)}`;
+document.getElementById('plan_2_threshold').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 0,maximumFractionDigits: 2}).format(PLAN_2_THRESHHOLD)}`;
+document.getElementById('plan_4_threshold').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 0,maximumFractionDigits: 2}).format(PLAN_4_THRESHHOLD)}`;
+document.getElementById('plan_5_threshold').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 0,maximumFractionDigits: 2}).format(PLAN_5_THRESHHOLD)}`;
+document.getElementById('plan_postgrad_threshold').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 0,maximumFractionDigits: 2}).format(PLAN_POSTGRAD_THRESHHOLD)}`;
+
+document.getElementById('plan_1_threshold_month').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format((PLAN_1_THRESHHOLD / 12))}`;
+document.getElementById('plan_2_threshold_month').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format((PLAN_2_THRESHHOLD / 12))}`;
+document.getElementById('plan_4_threshold_month').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format((PLAN_4_THRESHHOLD / 12))}`;
+document.getElementById('plan_5_threshold_month').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format((PLAN_5_THRESHHOLD / 12))}`;
+document.getElementById('plan_postgrad_threshold_month').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format((PLAN_POSTGRAD_THRESHHOLD / 12))}`;
+
+document.getElementById('plan_1_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
+document.getElementById('plan_2_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
+document.getElementById('plan_4_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
+document.getElementById('plan_5_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
+document.getElementById('postgrad_tax_rate').textContent = `${POSTGRAD_TAX_RATE}%`;
+
+
 //Inputs - Gross salary, Pension contribution % etc
 document.getElementById('gross_salary_input').oninput = function(){
   gross_salary = document.getElementById('gross_salary_input').value;
@@ -63,23 +92,24 @@ function updateAllCalculations() {
   gross_salary = salaryInput.value;
   pension_contribution_percentage = pensionInput.value;
 
-  // Reset errors
-  salaryInput.classList.remove('error');
-  pensionInput.classList.remove('error');
-
   hasError = false;
 
+//If either gross_salary or pension_contribution_percentage input is empty, hasError = True, therefore add .error classlist css. Else remove .error
   if (!gross_salary) {
     salaryInput.classList.add('error');
     hasError = true;
+  } else {
+    salaryInput.classList.remove('error');
   }
 
   if (!pension_contribution_percentage) {
     pensionInput.classList.add('error');
     hasError = true;
+  } else {
+    pensionInput.classList.remove('error');
   }
 
-  //Validation to show - if any of the 2 inputs are left blank. Otherwise it displays NaN error
+  //Validation to show £ ~ if gross_salary or pension_contribution_percentage inputs are empty.
   if (hasError) {
     document.getElementById('annual_pension_contribution').textContent = '£ ~';
     document.getElementById('monthly_pension_contribution').textContent = '£ ~';
@@ -112,6 +142,7 @@ function updateAllCalculations() {
 
     document.getElementById('net_take_home_figure').textContent = '£ ~';
     document.getElementById('net_monthly_take_home_figure').textContent = '£ ~';
+    document.getElementById('effective_tax_rate').textContent = '~';
     document.getElementById('annual_pension_figure').textContent = '£ ~';
     document.getElementById('monthly_pension_figure').textContent = '£ ~';
     document.getElementById('annual_sf_figure').textContent = '£ ~';
@@ -124,24 +155,6 @@ function updateAllCalculations() {
     document.getElementById('gross_daily_salary').textContent = '£ ~';
     document.getElementById('gross_hourly_salary').textContent = '£ ~';
 
-    document.getElementById('plan_1_threshold').textContent = `£${Intl.NumberFormat('en-GB').format(PLAN_1_THRESHHOLD)}`;
-    document.getElementById('plan_2_threshold').textContent = `£${Intl.NumberFormat('en-GB').format(PLAN_2_THRESHHOLD)}`;
-    document.getElementById('plan_4_threshold').textContent = `£${Intl.NumberFormat('en-GB').format(PLAN_4_THRESHHOLD)}`;
-    document.getElementById('plan_5_threshold').textContent = `£${Intl.NumberFormat('en-GB').format(PLAN_5_THRESHHOLD)}`;
-    document.getElementById('plan_postgrad_threshold').textContent = `£${Intl.NumberFormat('en-GB').format(PLAN_POSTGRAD_THRESHHOLD)}`;
-
-    document.getElementById('plan_1_threshold_month').textContent = `£${Intl.NumberFormat('en-GB').format((PLAN_1_THRESHHOLD / 12).toFixed(2))}`;
-    document.getElementById('plan_2_threshold_month').textContent = `£${Intl.NumberFormat('en-GB').format((PLAN_2_THRESHHOLD / 12).toFixed(2))}`;
-    document.getElementById('plan_4_threshold_month').textContent = `£${Intl.NumberFormat('en-GB').format((PLAN_4_THRESHHOLD / 12).toFixed(2))}`;
-    document.getElementById('plan_5_threshold_month').textContent = `£${Intl.NumberFormat('en-GB').format((PLAN_5_THRESHHOLD / 12).toFixed(2))}`;
-    document.getElementById('plan_postgrad_threshold_month').textContent = `£${Intl.NumberFormat('en-GB').format((PLAN_POSTGRAD_THRESHHOLD / 12).toFixed(2))}`;
-
-    document.getElementById('plan_1_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
-    document.getElementById('plan_2_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
-    document.getElementById('plan_4_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
-    document.getElementById('plan_5_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
-    document.getElementById('postgrad_tax_rate').textContent = `${POSTGRAD_TAX_RATE}%`;
-
     // Clear student finance breakdown
     document.getElementById('sf_breakdown').innerHTML = '<tr><td colspan="3" style="color:#D22B2B;"}>Enter salary and pension details*</td></tr>';
     document.getElementById('total_annual_sf').textContent = '£ ~';
@@ -150,27 +163,26 @@ function updateAllCalculations() {
     return;
   }
 
-
+  //----------------------------------------------------------------------------
+  //Pension Section
   //----------------------------------------------------------------------------
 
-
-  //Pension Section
   //Annual Pension Contribution
   annual_pension = gross_salary * (pension_contribution_percentage / 100);
-  document.getElementById('annual_pension_contribution').textContent = `£${Intl.NumberFormat('en-GB').format(annual_pension.toFixed(2))}`;
+  document.getElementById('annual_pension_contribution').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(annual_pension)}`;
 
   //Monthly Pension Contribution
   monthly_pension = annual_pension / 12;
-  document.getElementById('monthly_pension_contribution').textContent = `£${Intl.NumberFormat('en-GB').format(monthly_pension.toFixed(2))}`;
+  document.getElementById('monthly_pension_contribution').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(monthly_pension)}`;
 
 
   //----------------------------------------------------------------------------
+  //Income tax section
+  //----------------------------------------------------------------------------
 
-
-  //Top Salary Section
   //Gross Income Minus Pension
   gross_income_minus_pension = gross_salary - annual_pension;
-  document.getElementById('gross_income_minus_pension').textContent = `£${Intl.NumberFormat('en-GB').format(gross_income_minus_pension.toFixed(2))}`;
+  document.getElementById('gross_income_minus_pension').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(gross_income_minus_pension)}`;
 
 
   //100k Tax band Personal Allowance rule
@@ -180,7 +192,7 @@ function updateAllCalculations() {
   } else {
     personal_allowance_rule = 0;
   }
-  document.getElementById('personal_allowance_rule').textContent = `£${Intl.NumberFormat('en-GB').format(personal_allowance_rule.toFixed(2))}`;
+  document.getElementById('personal_allowance_rule').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(personal_allowance_rule)}`;
 
 
   //100k Personal Allowance Deduction
@@ -190,7 +202,7 @@ function updateAllCalculations() {
   } else {
     personal_allowance_deduction = personal_allowance_rule / 2;
   }
-  document.getElementById('personal_allowance_deduction').textContent = `£${Intl.NumberFormat('en-GB').format(personal_allowance_deduction.toFixed(2))}`;
+  document.getElementById('personal_allowance_deduction').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(personal_allowance_deduction)}`;
 
 
   //Applicable Tax Rate
@@ -212,12 +224,12 @@ function updateAllCalculations() {
   } else {
     personal_allowance = gross_income_minus_pension;
   }
-  document.getElementById('personal_allowance').textContent = `£${Intl.NumberFormat('en-GB').format(personal_allowance.toFixed(2))}`;
+  document.getElementById('personal_allowance').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(personal_allowance)}`;
 
 
   //Taxable Income
   taxable_income = gross_income_minus_pension - personal_allowance;
-  document.getElementById('taxable_income').textContent = `£${Intl.NumberFormat('en-GB').format(taxable_income.toFixed(2))}`;
+  document.getElementById('taxable_income').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(taxable_income)}`;
 
 
   //Tax Rate Table
@@ -227,11 +239,11 @@ function updateAllCalculations() {
   } else {
     basic_rate_taxable_income = taxable_income;
   }
-  document.getElementById('basic_rate_taxable_income').textContent = `£${Intl.NumberFormat('en-GB').format(basic_rate_taxable_income.toFixed(2))}`;
+  document.getElementById('basic_rate_taxable_income').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(basic_rate_taxable_income)}`;
 
     //Basic Rate Taxable Pay
   basic_rate_taxable_pay = basic_rate_taxable_income * (BASIC_RATE_PERCENTAGE/100);
-  document.getElementById('basic_rate_taxable_pay').textContent = `£${Intl.NumberFormat('en-GB').format(basic_rate_taxable_pay.toFixed(2))}`;
+  document.getElementById('basic_rate_taxable_pay').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(basic_rate_taxable_pay)}`;
 
 
     //Additional Rate Taxable Income
@@ -240,10 +252,10 @@ function updateAllCalculations() {
   } else {
     additional_rate_taxable_income = taxable_income - HIGHER_RATE_LIMIT;
   }
-  document.getElementById('additional_rate_taxable_income').textContent = `£${Intl.NumberFormat('en-GB').format(additional_rate_taxable_income.toFixed(2))}`;
+  document.getElementById('additional_rate_taxable_income').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(additional_rate_taxable_income)}`;
     //Additional Rate Taxable Pay
   additional_rate_taxable_pay = additional_rate_taxable_income * (ADDITIONAL_RATE_PERCENTAGE/100);
-  document.getElementById('additional_rate_taxable_pay').textContent = `£${Intl.NumberFormat('en-GB').format(additional_rate_taxable_pay.toFixed(2))}`;
+  document.getElementById('additional_rate_taxable_pay').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(additional_rate_taxable_pay)}`;
 
 
     //Higher Rate Taxable Income
@@ -252,30 +264,31 @@ function updateAllCalculations() {
   } else {
     higher_rate_taxable_income = 0;
   }
-  document.getElementById('higher_rate_taxable_income').textContent = `£${Intl.NumberFormat('en-GB').format(higher_rate_taxable_income.toFixed(2))}`;
+  document.getElementById('higher_rate_taxable_income').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(higher_rate_taxable_income)}`;
     //Higher Rate Taxable Pay
   higher_rate_taxable_pay = higher_rate_taxable_income * (HIGHER_RATE_PERCENTAGE/100);
-  document.getElementById('higher_rate_taxable_pay').textContent = `£${Intl.NumberFormat('en-GB').format(higher_rate_taxable_pay.toFixed(2))}`;
+  document.getElementById('higher_rate_taxable_pay').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(higher_rate_taxable_pay)}`;
 
   //Total Tax Payable
   total_tax_payable = basic_rate_taxable_pay + higher_rate_taxable_pay + additional_rate_taxable_pay
-  document.getElementById('total_tax_payable').textContent = `£${Intl.NumberFormat('en-GB').format(total_tax_payable.toFixed(2))}`;
+  document.getElementById('total_tax_payable').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(total_tax_payable)}`;
 
   //Post Tax Income
   post_tax_income = gross_income_minus_pension - total_tax_payable
-  document.getElementById('post_tax_income').textContent = `£${Intl.NumberFormat('en-GB').format(post_tax_income.toFixed(2))}`;
+  document.getElementById('post_tax_income').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(post_tax_income)}`;
 
 
   //----------------------------------------------------------------------------
-
-
   //National Insurance
+  //----------------------------------------------------------------------------
+
+
   if ((gross_income_minus_pension - PERSONAL_ALLOWANCE_LIMIT) > 0) {
     ni_taxable_income = gross_income_minus_pension - PERSONAL_ALLOWANCE_LIMIT;
   } else {
     ni_taxable_income = 0;
   }
-  document.getElementById('ni_taxable_income').textContent = `£${Intl.NumberFormat('en-GB').format(ni_taxable_income.toFixed(2))}`;
+  document.getElementById('ni_taxable_income').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(ni_taxable_income)}`;
 
 
   //NI Higher rate table
@@ -284,10 +297,10 @@ function updateAllCalculations() {
   } else {
     ni_higher_rate_taxable_income = gross_income_minus_pension - BASIC_RATE_LIMIT;
   }
-  document.getElementById('ni_higher_rate_taxable_income').textContent = `£${Intl.NumberFormat('en-GB').format(ni_higher_rate_taxable_income.toFixed(2))}`;
+  document.getElementById('ni_higher_rate_taxable_income').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(ni_higher_rate_taxable_income)}`;
 
   ni_higher_rate_taxable_pay = ni_higher_rate_taxable_income * (NI_HIGHER_RATE_PERCENTAGE / 100);
-  document.getElementById('ni_higher_rate_taxable_pay').textContent = `£${Intl.NumberFormat('en-GB').format(ni_higher_rate_taxable_pay.toFixed(2))}`;
+  document.getElementById('ni_higher_rate_taxable_pay').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(ni_higher_rate_taxable_pay)}`;
 
 
   //NI Basic rate table
@@ -296,26 +309,26 @@ function updateAllCalculations() {
   } else {
     ni_basic_rate_taxable_income = ni_taxable_income;
   }
-  document.getElementById('ni_basic_rate_taxable_income').textContent = `£${Intl.NumberFormat('en-GB').format(ni_basic_rate_taxable_income.toFixed(2))}`;
+  document.getElementById('ni_basic_rate_taxable_income').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(ni_basic_rate_taxable_income)}`;
 
   ni_basic_rate_taxable_pay = ni_basic_rate_taxable_income * (NI_BASIC_RATE_PERCENTAGE / 100);
-  document.getElementById('ni_basic_rate_taxable_pay').textContent = `£${Intl.NumberFormat('en-GB').format(ni_basic_rate_taxable_pay.toFixed(2))}`;
+  document.getElementById('ni_basic_rate_taxable_pay').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(ni_basic_rate_taxable_pay)}`;
 
 
   //Total NI
   total_ni = ni_basic_rate_taxable_pay + ni_higher_rate_taxable_pay
-  document.getElementById('total_ni').textContent = `£${Intl.NumberFormat('en-GB').format(total_ni.toFixed(2))}`;
-
+  document.getElementById('total_ni').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(total_ni)}`;
 
   //Monthly NI
   monthly_ni = total_ni / 12
-  document.getElementById('monthly_ni').textContent = `£${Intl.NumberFormat('en-GB').format(monthly_ni.toFixed(2))}`;
+  document.getElementById('monthly_ni').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(monthly_ni)}`;
 
 
   //----------------------------------------------------------------------------
-
-
   // Student Finance - Concurrent Plans Support
+  //----------------------------------------------------------------------------
+
+
   plan_1_checked = document.getElementById('plan_1').checked;
   plan_2_checked = document.getElementById('plan_2').checked;
   plan_4_checked = document.getElementById('plan_4').checked;
@@ -334,14 +347,23 @@ function updateAllCalculations() {
 
   // PLAN 5 - Calculate FIRST before all other plans
   // Plan 5 gets income between £25k and the next highest threshold of other selected plans
+  // PRIORITY: Plan 1 threshold > Plan 2 threshold > Plan 4 threshold
   if (plan_5_checked && gross_income_minus_pension >= PLAN_5_THRESHHOLD) {
     plan_5_threshold_monthly = PLAN_5_THRESHHOLD / 12;
 
-    // Find the highest threshold among other selected plans
+    // Find the next threshold for Plan 5 (prioritize Plan 1, then Plan 2, then Plan 4)
     next_threshold = 0;
-    if (plan_1_checked) next_threshold = Math.max(next_threshold, PLAN_1_THRESHHOLD);
-    if (plan_2_checked) next_threshold = Math.max(next_threshold, PLAN_2_THRESHHOLD);
-    if (plan_4_checked) next_threshold = Math.max(next_threshold, PLAN_4_THRESHHOLD);
+
+    if (plan_1_checked) {
+      // Plan 1 selected: use Plan 1's threshold (highest priority)
+      next_threshold = PLAN_1_THRESHHOLD;
+    } else if (plan_2_checked) {
+      // Plan 1 not selected, but Plan 2 is: use Plan 2's threshold
+      next_threshold = PLAN_2_THRESHHOLD;
+    } else if (plan_4_checked) {
+      // Neither Plan 1 nor Plan 2 selected, but Plan 4 is: use Plan 4's threshold
+      next_threshold = PLAN_4_THRESHHOLD;
+    }
 
     if (next_threshold > 0) {
       // Another plan is selected - Plan 5 goes up to that threshold
@@ -500,8 +522,8 @@ function updateAllCalculations() {
     sf_breakdown_html += `
       <tr>
         <td>Plan 1</td>
-        <td>£${Intl.NumberFormat('en-GB').format(plan_1_result.annual.toFixed(2))}</td>
-        <td>£${Intl.NumberFormat('en-GB').format(plan_1_result.monthly.toFixed(2))}</td>
+        <td>£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(plan_1_result.annual)}</td>
+        <td>£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(plan_1_result.monthly)}</td>
       </tr>
     `;
   }
@@ -510,8 +532,8 @@ function updateAllCalculations() {
     sf_breakdown_html += `
       <tr>
         <td>Plan 2</td>
-        <td>£${Intl.NumberFormat('en-GB').format(plan_2_result.annual.toFixed(2))}</td>
-        <td>£${Intl.NumberFormat('en-GB').format(plan_2_result.monthly.toFixed(2))}</td>
+        <td>£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(plan_2_result.annual)}</td>
+        <td>£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(plan_2_result.monthly)}</td>
       </tr>
     `;
   }
@@ -520,8 +542,8 @@ function updateAllCalculations() {
     sf_breakdown_html += `
       <tr>
         <td>Plan 4</td>
-        <td>£${Intl.NumberFormat('en-GB').format(plan_4_result.annual.toFixed(2))}</td>
-        <td>£${Intl.NumberFormat('en-GB').format(plan_4_result.monthly.toFixed(2))}</td>
+        <td>£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(plan_4_result.annual)}</td>
+        <td>£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(plan_4_result.monthly)}</td>
       </tr>
     `;
   }
@@ -530,8 +552,8 @@ function updateAllCalculations() {
     sf_breakdown_html += `
       <tr>
         <td>Plan 5</td>
-        <td>£${Intl.NumberFormat('en-GB').format(plan_5_result.annual.toFixed(2))}</td>
-        <td>£${Intl.NumberFormat('en-GB').format(plan_5_result.monthly.toFixed(2))}</td>
+        <td>£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(plan_5_result.annual)}</td>
+        <td>£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(plan_5_result.monthly)}</td>
       </tr>
     `;
   }
@@ -540,8 +562,8 @@ function updateAllCalculations() {
     sf_breakdown_html += `
       <tr>
         <td>Postgraduate</td>
-        <td>£${Intl.NumberFormat('en-GB').format(postgrad_result.annual.toFixed(2))}</td>
-        <td>£${Intl.NumberFormat('en-GB').format(postgrad_result.monthly.toFixed(2))}</td>
+        <td>£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(postgrad_result.annual)}</td>
+        <td>£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(postgrad_result.monthly)}</td>
       </tr>
     `;
   }
@@ -553,68 +575,46 @@ function updateAllCalculations() {
 
   // Update the DOM
   document.getElementById('sf_breakdown').innerHTML = sf_breakdown_html;
-  document.getElementById('total_annual_sf').textContent = `£${Intl.NumberFormat('en-GB').format(total_annual_sf.toFixed(2))}`;
-  document.getElementById('total_monthly_sf').textContent = `£${Intl.NumberFormat('en-GB').format(total_monthly_sf.toFixed(2))}`;
+  document.getElementById('total_annual_sf').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(total_annual_sf)}`;
+  document.getElementById('total_monthly_sf').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(total_monthly_sf)}`;
 
-  // Set these for use in other calculations
-  annual_sf_payment = total_annual_sf;
-  monthly_sf_payment = total_monthly_sf;
 
-  //---------------------------------------------------------------------------------------------------------------------
-
+  //----------------------------------------------------------------------------
   //Net & Gross figures
-  net_take_home_figure = post_tax_income - total_ni - annual_sf_payment;
-  document.getElementById('net_take_home_figure').textContent =`£${Intl.NumberFormat('en-GB').format(net_take_home_figure.toFixed(2))}`;
+  //----------------------------------------------------------------------------
 
-  net_monthly_take_home_figure = net_take_home_figure / 12;
-  document.getElementById('net_monthly_take_home_figure').textContent =`£${Intl.NumberFormat('en-GB').format(net_monthly_take_home_figure.toFixed(2))}`;
-
-  document.getElementById('annual_pension_figure').textContent =`£${Intl.NumberFormat('en-GB').format(annual_pension.toFixed(2))}`;
-
-  document.getElementById('monthly_pension_figure').textContent =`£${Intl.NumberFormat('en-GB').format(monthly_pension.toFixed(2))}`;
-
-  document.getElementById('annual_sf_figure').textContent =`£${Intl.NumberFormat('en-GB').format(annual_sf_payment.toFixed(2))}`;
-
-  document.getElementById('monthly_sf_figure').textContent =`£${Intl.NumberFormat('en-GB').format(monthly_sf_payment.toFixed(2))}`;
-
-  document.getElementById('annual_ni_figure').textContent =`£${Intl.NumberFormat('en-GB').format(total_ni.toFixed(2))}`;
-
-  document.getElementById('monthly_ni_figure').textContent =`£${Intl.NumberFormat('en-GB').format(monthly_ni.toFixed(2))}`;
-
-  document.getElementById('gross_annual_salary').textContent = `£${Intl.NumberFormat('en-GB').format(Number(gross_salary).toFixed(2))}`;
-
+  //Gross figures
+  document.getElementById('gross_annual_salary').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(Number(gross_salary))}`;
   gross_monthly_salary = gross_salary / 12;
-  document.getElementById('gross_monthly_salary').textContent = `£${Intl.NumberFormat('en-GB').format(gross_monthly_salary.toFixed(2))}`;
-
+  document.getElementById('gross_monthly_salary').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(gross_monthly_salary)}`;
   gross_weekly_salary = gross_salary / 52;
-  document.getElementById('gross_weekly_salary').textContent = `£${Intl.NumberFormat('en-GB').format(gross_weekly_salary.toFixed(2))}`;
-
+  document.getElementById('gross_weekly_salary').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(gross_weekly_salary)}`;
   gross_daily_salary = gross_weekly_salary / 5;
-  document.getElementById('gross_daily_salary').textContent = `£${Intl.NumberFormat('en-GB').format(gross_daily_salary.toFixed(2))}`;
-
+  document.getElementById('gross_daily_salary').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(gross_daily_salary)}`;
   gross_hourly_salary = gross_weekly_salary / 40;
-  document.getElementById('gross_hourly_salary').textContent = `£${Intl.NumberFormat('en-GB').format(gross_hourly_salary.toFixed(2))}`;
+  document.getElementById('gross_hourly_salary').textContent = `£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(gross_hourly_salary)}`;
 
-  // Update student finance thresholds table
-  document.getElementById('plan_1_threshold').textContent = `£${Intl.NumberFormat('en-GB').format(PLAN_1_THRESHHOLD)}`;
-  document.getElementById('plan_2_threshold').textContent = `£${Intl.NumberFormat('en-GB').format(PLAN_2_THRESHHOLD)}`;
-  document.getElementById('plan_4_threshold').textContent = `£${Intl.NumberFormat('en-GB').format(PLAN_4_THRESHHOLD)}`;
-  document.getElementById('plan_5_threshold').textContent = `£${Intl.NumberFormat('en-GB').format(PLAN_5_THRESHHOLD)}`;
-  document.getElementById('plan_postgrad_threshold').textContent = `£${Intl.NumberFormat('en-GB').format(PLAN_POSTGRAD_THRESHHOLD)}`;
+  //Net figures + effective tax rate
+  net_take_home_figure = post_tax_income - total_ni - total_annual_sf;
+  document.getElementById('net_take_home_figure').textContent =`£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(net_take_home_figure)}`;
+  net_monthly_take_home_figure = net_take_home_figure / 12;
+  document.getElementById('net_monthly_take_home_figure').textContent =`£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(net_monthly_take_home_figure)}`;
+  effective_tax_rate = ((total_tax_payable + total_annual_sf + total_ni) / gross_income_minus_pension) * 100;
+  document.getElementById('effective_tax_rate').textContent =`${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(effective_tax_rate)}%`;
 
-  document.getElementById('plan_1_threshold_month').textContent = `£${Intl.NumberFormat('en-GB').format((PLAN_1_THRESHHOLD / 12).toFixed(2))}`;
-  document.getElementById('plan_2_threshold_month').textContent = `£${Intl.NumberFormat('en-GB').format((PLAN_2_THRESHHOLD / 12).toFixed(2))}`;
-  document.getElementById('plan_4_threshold_month').textContent = `£${Intl.NumberFormat('en-GB').format((PLAN_4_THRESHHOLD / 12).toFixed(2))}`;
-  document.getElementById('plan_5_threshold_month').textContent = `£${Intl.NumberFormat('en-GB').format((PLAN_5_THRESHHOLD / 12).toFixed(2))}`;
-  document.getElementById('plan_postgrad_threshold_month').textContent = `£${Intl.NumberFormat('en-GB').format((PLAN_POSTGRAD_THRESHHOLD / 12).toFixed(2))}`;
+  //Pension figures
+  document.getElementById('annual_pension_figure').textContent =`£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(annual_pension)}`;
+  document.getElementById('monthly_pension_figure').textContent =`£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(monthly_pension)}`;
 
-  document.getElementById('plan_1_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
-  document.getElementById('plan_2_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
-  document.getElementById('plan_4_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
-  document.getElementById('plan_5_tax_rate').textContent = `${PLAN_1245_TAX_RATE}%`;
-  document.getElementById('postgrad_tax_rate').textContent = `${POSTGRAD_TAX_RATE}%`;
+  //Student finance figures
+  document.getElementById('annual_sf_figure').textContent =`£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(total_annual_sf)}`;
+  document.getElementById('monthly_sf_figure').textContent =`£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(total_monthly_sf)}`;
+
+  // National insurance figures
+  document.getElementById('annual_ni_figure').textContent =`£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(total_ni)}`;
+  document.getElementById('monthly_ni_figure').textContent =`£${Intl.NumberFormat('en-GB', {minimumFractionDigits: 2,maximumFractionDigits: 2}).format(monthly_ni)}`;
 
 }
 
-//Calling updateAllCalculations() when the page loads to initialize the display of £ and - where relevant
+//Calling updateAllCalculations() when the page loads to initialize the display of £ ~ where relevant
 updateAllCalculations();
