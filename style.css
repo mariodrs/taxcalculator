@@ -212,7 +212,7 @@ h2::after {
 }
 
 /* Red text notes for various sections */
-.section_notice {
+.section_notice, .pension_notice {
   background: none;
   padding: 0;
   margin: 10px 0 10px 0;

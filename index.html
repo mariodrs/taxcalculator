@@ -26,8 +26,9 @@
     <!----------------------------------->
     <div class="pension">
       <h2>Pension</h2>
-      <p class="section_notice">Currently only supports gross contributions, based on salary sacrifice %*</p>
-      <label>*Pension Contribution %: <input type="number" inputmode="numeric" id="pension_contribution_input"></label>
+      <label>*Pension Contribution %: <input type="number" inputmode="numeric" min="0" max="100" id="pension_contribution_percent"></label>
+      <span id="pension_notice"></span>
+      <label>*Pension Contribution £: <input type="number" inputmode="numeric" id="pension_contribution_amount"></label>
       <p>Annual Pension Contribution: <span id="annual_pension_contribution"></span></p>
       <p>Monthly Pension Contribution: <span id="monthly_pension_contribution"></span></p>
     </div>
@@ -77,7 +78,7 @@
     </div>
 
     <!----------------------------------->
-    <!-- Studen Finance section -->
+    <!-- Student Finance section -->
     <!----------------------------------->
     <div class="student_finance">
       <h2>Student Finance</h2>
