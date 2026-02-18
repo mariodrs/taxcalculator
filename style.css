@@ -212,7 +212,7 @@ h2::after {
 }
 
 /* Red text notes for various sections */
-.section_notice, .pension_notice {
+.section_notice {
   background: none;
   padding: 0;
   margin: 10px 0 10px 0;
@@ -223,11 +223,11 @@ h2::after {
 }
 
 /* Student Finance Checkboxes */
-/* Layout (keeps your existing structure) */
 .plan-checkboxes {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  padding-top: 15px;
 }
 
 .plan-checkboxes label {

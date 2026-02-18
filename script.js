@@ -26,7 +26,6 @@ themeToggle.addEventListener('click', () => {
 // Calculator Functionality
 //------------------------------------------------------------------------------
 
-
 const PERSONAL_ALLOWANCE_LIMIT = 12570;
 const BASIC_RATE_LIMIT = 50270;
 const HIGHER_RATE_LIMIT = 125140;
@@ -122,11 +121,11 @@ function validatePensionAmount() {
   // Check if pension amount is negative
   if (pension_contribution_amount_value < 0) {
     pensionInput.value = '';
-    pension_notice_html = `<span class="pension_notice">Pension contribution must be £0 or greater*</span>`;
+    pension_notice_html = `<span class="section_notice">Pension contribution must be £0 or greater*</span>`;
   }
   // Check if pension exceeds gross salary (only if salary has been entered)
   else if (pension_contribution_amount_value > gross_salary) {
-    pension_notice_html = `<span class="pension_notice">Pension contribution should not be greater than gross salary*</span>`;
+    pension_notice_html = `<span class="section_notice">Pension contribution should not be greater than gross salary*</span>`;
   }
   
   // Update the notice element
